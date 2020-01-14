@@ -35,36 +35,36 @@ public class MovieServiceImpl implements MovieService {
     }
 
     public ResponseEntity getMovieById(Long movieId) {
-        if(movieRepo.findById(movieId).isPresent()){
-            return new ResponseEntity(movieRepo.findById(movieId),HttpStatus.OK);
-        }else{
-            return new ResponseEntity("Object not found :(",HttpStatus.NOT_FOUND);
-        }
-    }
-
-    public ResponseEntity getMovies() {
-        if(movieRepo.findAll().isEmpty()){
-            return new ResponseEntity("List is empty :(",HttpStatus.NOT_FOUND);
-        }else{
-            return new ResponseEntity(movieRepo.findAll(),HttpStatus.OK);
-        }
-    }
-
-    public ResponseEntity deleteMovieById(Long movieId) {
-        if(movieRepo.findById(movieId).isPresent()){
-            movieRepo.deleteById(movieId);
-            return new ResponseEntity("Object has been deleted :)",HttpStatus.OK);
-        }else{
+        if (movieRepo.findById(movieId).isPresent()) {
+            return new ResponseEntity(movieRepo.findById(movieId), HttpStatus.OK);
+        } else {
             return new ResponseEntity("Object not found :(", HttpStatus.NOT_FOUND);
         }
     }
 
-    public ResponseEntity updateMovie(Movie newMovie){
-        if(!movieRepo.findById(newMovie.getId()).isPresent()){
-            return new ResponseEntity("Object not found :(",HttpStatus.NOT_FOUND);
-        }else{
+    public ResponseEntity getMovies() {
+        if (movieRepo.findAll().isEmpty()) {
+            return new ResponseEntity("List is empty :(", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity(movieRepo.findAll(), HttpStatus.OK);
+        }
+    }
+
+    public ResponseEntity deleteMovieById(Long movieId) {
+        if (movieRepo.findById(movieId).isPresent()) {
+            movieRepo.deleteById(movieId);
+            return new ResponseEntity("Object has been deleted :)", HttpStatus.OK);
+        } else {
+            return new ResponseEntity("Object not found :(", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity updateMovie(Movie newMovie) {
+        if (!movieRepo.findById(newMovie.getId()).isPresent()) {
+            return new ResponseEntity("Object not found :(", HttpStatus.NOT_FOUND);
+        } else {
             movieRepo.save(newMovie);
-            return new ResponseEntity("Object has been updated :)",HttpStatus.OK);
+            return new ResponseEntity("Object has been updated :)", HttpStatus.OK);
         }
     }
 

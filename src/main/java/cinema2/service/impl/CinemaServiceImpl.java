@@ -58,7 +58,7 @@ public class CinemaServiceImpl implements CinemaService {
             String message = "";
 
             if (updatedCinema.getName() == null || updatedCinema.getName().length() == 0) {
-                message += "Cinema name must not be empty";
+                message += "Cinema name may not be empty";
             } else if (updatedCinema.getName().length() > 15) {
                 message += "Cinema name is too long";
             } else if (cinemaRepo.existsByName(updatedCinema.getName())) {

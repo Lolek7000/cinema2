@@ -18,11 +18,11 @@ public class Cinema implements Serializable {
 
     @Column(unique = true)
     @Size(max = 15, message = "Cinema name is too long")
-    @NotBlank(message = "Cinema name must not be empty")
+    @NotBlank(message = "Cinema name may not be empty")
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(updatable = false)
+    @JoinColumn(updatable = false, nullable = false)
     private CinemaProgramme cinemaProgramme = new CinemaProgramme();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cinema")

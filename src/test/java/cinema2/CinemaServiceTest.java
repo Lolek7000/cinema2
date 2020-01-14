@@ -2,6 +2,7 @@ package cinema2;
 
 import cinema2.model.Cinema;
 import cinema2.repository.CinemaRepo;
+import cinema2.service.CinemaService;
 import cinema2.service.impl.CinemaServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,7 +25,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 public class CinemaServiceTest {
 
     @Mock

@@ -1,5 +1,8 @@
 package cinema2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,14 +17,27 @@ public class Seance implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Room room;
 
     @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Movie movie;
+
+    @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private CinemaProgramme cinemaProgramme;
 
     private LocalDateTime date;
 
     public Seance() {
+    }
+
+    public Seance(Room room, Movie movie, CinemaProgramme cinemaProgramme, LocalDateTime date) {
+        this.room = room;
+        this.movie = movie;
+        this.cinemaProgramme = cinemaProgramme;
+        this.date = date;
     }
 
     public Long getId() {
@@ -46,6 +62,14 @@ public class Seance implements Serializable {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public CinemaProgramme getCinemaProgramme() {
+        return cinemaProgramme;
+    }
+
+    public void setCinemaProgramme(CinemaProgramme cinemaProgramme) {
+        this.cinemaProgramme = cinemaProgramme;
     }
 
     public LocalDateTime getDate() {

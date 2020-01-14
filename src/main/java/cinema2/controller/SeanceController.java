@@ -27,10 +27,18 @@ public class SeanceController {
         return seanceService.getSeanceById(seanceId);
     }
 
-    @GetMapping("/getSeances")
+    @GetMapping("/getAllSeances")
     public Iterable<Seance> getSeances() {
-        return seanceService.getSeances();
+        return seanceService.getAllSeances();
     }
 
+    @PutMapping("/update")
+    public ResponseEntity updateSeance(@RequestBody Seance updatedSeance) {
+        return seanceService.updateSeance(updatedSeance);
+    }
 
+    @DeleteMapping("/delete/{seanceId}")
+    public boolean deleteSeanceById(@PathVariable Long seanceId) {
+        return seanceService.deleteSeanceById(seanceId);
+    }
 }

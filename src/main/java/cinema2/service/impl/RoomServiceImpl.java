@@ -35,7 +35,7 @@ public class RoomServiceImpl {
             if (!existInCinemaByNumber(cinemaFromDB, room)) {
                 return new ResponseEntity<>(roomRepo.save(room), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Room with number " + room.getNumber() + " already exist in given cinema", HttpStatus.CONFLICT);
+                return new ResponseEntity<>("Room with number " + room.getNumber() + " already exist in given cinema.", HttpStatus.CONFLICT);
             }
         } catch (InvalidDataAccessApiUsageException e) {
             return new ResponseEntity<>(e.getMostSpecificCause().getMessage(), HttpStatus.BAD_REQUEST);
